@@ -1,0 +1,83 @@
+You are a senior full-stack web developer and UI/UX designer.
+
+Build a modern, professional, responsive personal portfolio website for a tech professional working at Shakkti AI.
+
+PERSONAL BRAND
+Name: Rushikesh Dhobe
+Company: Shakkti AI
+Location: India
+Theme: Dark + subtle neon (AI/tech feel)
+Primary Color: Electric Blue / Cyan
+Font: Modern sans-serif (Inter / Poppins)
+
+ROLES & EXPERTISE (must be clearly highlighted)
+• AI / ML Engineer (LLMs, agents, NLP, automation)
+• Cloud Engineer (AWS, RunPod, model deployment, scaling, monitoring)
+• Product Manager (idea → MVP → production → iteration)
+• Flutter Developer (Android, iOS, Web apps)
+• Python Developer (APIs, automation, data pipelines)
+• AI Automation & Workflow Design (n8n, webhooks, integrations)
+
+TECH STACK SECTION
+Frontend: Flutter, HTML, CSS, JS
+Backend: Python, Flask, FastAPI
+AI: OpenAI APIs, LLMs, Agents, Prompt Engineering
+Cloud: AWS, RunPod, Firebase, Docker
+Databases: MongoDB, Firestore
+Automation: n8n, Webhooks, APIs
+
+WEBSITE SECTIONS (build all)
+1. Hero Section
+   - Headline: “Building AI-Powered Products from Idea to Scale”
+   - Subtext: AI Engineer • Cloud Architect • Product Builder • Flutter Dev
+   - CTA Buttons: “View Projects” | “Contact Me”
+
+2. About Me
+   - Short professional bio focused on real-world execution
+   - Emphasize startup mindset, ownership, and end-to-end delivery
+
+3. What I Do (Cards Layout)
+   - AI/ML Engineering
+   - Cloud & Model Deployment
+   - Product Management
+   - Flutter App Development
+   - Python Backend & Automation
+
+4. Projects Section
+   Include sample project cards (can be placeholders but realistic):
+   - AI Political Intelligence Platform
+   - POS-Led Fintech Platform
+   - AI Decision Coaching App
+   - Flutter ERP System
+   - WhatsApp AI Bot with Dashboard
+
+5. Experience
+   - Shakkti AI
+   - Role: AI / ML Engineer & Product Engineer
+   - Focus on impact, not just responsibilities
+
+6. Skills Matrix
+   - Use progress bars or tags
+   - Group by AI, Cloud, Mobile, Backend, Product
+
+7. Contact Section
+   - Email
+   - LinkedIn
+   - GitHub
+   - Simple contact form (frontend only)
+
+TECH REQUIREMENTS
+• Fully responsive (mobile-first)
+• Clean component structure
+• SEO friendly
+• Smooth animations (CSS or minimal JS)
+• No external paid services
+• Ready to deploy
+
+OUTPUT FORMAT
+• Generate full working project
+• Include index.html, styles.css, script.js (or React if you choose)
+• Clean, readable code
+• Add comments for clarity
+
+Build this as if it’s for a high-impact AI startup engineer portfolio.
