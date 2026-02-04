@@ -35,33 +35,32 @@
 }
 
 :root {
-  /* Dark Future Theme Base - Always Dark for this portfolio as requested */
-  --background: 222 47% 11%; /* Deep dark blue-grey */
-  --foreground: 210 40% 98%;
+  /* Minimalistic Light Theme */
+  --background: 0 0% 100%; /* Pure White */
+  --foreground: 222 47% 11%;
 
-  --primary: 180 100% 50%; /* Electric Cyan */
-  --primary-foreground: 222 47% 11%;
+  --primary: 221 83% 53%; /* Classic Blue */
+  --primary-foreground: 210 40% 98%;
 
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11.2%;
 
-  --accent: 262 80% 50%; /* Neon Purple accent */
-  --accent-foreground: 210 40% 98%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222 47% 11.2%;
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
 
-  --card: 222 47% 13%; /* Slightly lighter than bg */
-  --card-foreground: 210 40% 98%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11.2%;
 
-  --border: 217 33% 20%;
-  --input: 217 33% 20%;
-  --ring: 180 100% 50%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
-/* Force dark mode styles everywhere since this is a dark-themed portfolio */
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
@@ -76,49 +75,42 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--secondary));
-  border-radius: 5px;
+  background: hsl(var(--muted));
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
+  background: hsl(var(--primary) / 0.2);
 }
 
-/* Glassmorphism Utilities */
-.glass {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
+/* Minimalist Glass Card */
 .glass-card {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.4));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: hsl(var(--primary) / 0.3);
-  box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.1);
-  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.5);
+  box-shadow: 0 20px 40px -20px hsl(var(--primary) / 0.15);
+  transform: translateY(-4px);
 }
 
-/* Neon Text Glow */
-.text-glow {
-  text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
-}
-
-/* Grid Background Pattern */
+/* Subtle Grid Background Pattern */
 .bg-grid-pattern {
-  background-size: 50px 50px;
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

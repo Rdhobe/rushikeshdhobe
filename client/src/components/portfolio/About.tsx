@@ -62,26 +62,26 @@ export function About() {
           </motion.div>
           
           <div className="relative">
-            <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full" />
-            <div className="relative z-10 grid grid-cols-2 gap-4">
-              <div className="space-y-4 translate-y-8">
-                <div className="glass p-6 rounded-2xl text-center">
-                  <span className="text-4xl font-bold text-white block">5+</span>
-                  <span className="text-sm text-muted-foreground">Years Exp.</span>
+            <div className="absolute inset-0 bg-primary/5 blur-[100px] rounded-full" />
+            <div className="relative z-10 grid grid-cols-2 gap-6">
+              <div className="space-y-6 translate-y-12">
+                <div className="glass-card p-8 rounded-3xl text-center">
+                  <span className="text-5xl font-bold text-foreground block">5+</span>
+                  <span className="text-sm font-medium text-muted-foreground">Years Exp.</span>
                 </div>
-                <div className="glass p-6 rounded-2xl text-center">
-                  <span className="text-4xl font-bold text-primary block">20+</span>
-                  <span className="text-sm text-muted-foreground">Projects</span>
+                <div className="glass-card p-8 rounded-3xl text-center bg-primary/5 border-primary/20">
+                  <span className="text-5xl font-bold text-primary block">20+</span>
+                  <span className="text-sm font-medium text-muted-foreground">Projects</span>
                 </div>
               </div>
-              <div className="space-y-4">
-                <div className="glass p-6 rounded-2xl text-center">
-                  <span className="text-4xl font-bold text-primary block">10+</span>
-                  <span className="text-sm text-muted-foreground">Clients</span>
+              <div className="space-y-6">
+                <div className="glass-card p-8 rounded-3xl text-center bg-primary/5 border-primary/20">
+                  <span className="text-5xl font-bold text-primary block">10+</span>
+                  <span className="text-sm font-medium text-muted-foreground">Clients</span>
                 </div>
-                <div className="glass p-6 rounded-2xl text-center">
-                  <span className="text-4xl font-bold text-white block">100%</span>
-                  <span className="text-sm text-muted-foreground">Delivery</span>
+                <div className="glass-card p-8 rounded-3xl text-center">
+                  <span className="text-5xl font-bold text-foreground block">100%</span>
+                  <span className="text-sm font-medium text-muted-foreground">Delivery</span>
                 </div>
               </div>
             </div>

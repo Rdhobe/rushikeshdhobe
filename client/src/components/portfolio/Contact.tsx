@@ -51,40 +51,34 @@ export function Contact() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div className="space-y-8">
-              <div className="glass p-8 rounded-2xl space-y-6">
-                <h3 className="text-xl font-bold text-white">Contact Information</h3>
+              <div className="glass-card p-10 rounded-3xl space-y-8">
+                <h3 className="text-2xl font-bold text-foreground">Contact Information</h3>
                 
-                <a href="mailto:rushikesh@shakkti.ai" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Mail size={20} />
+                <a href="mailto:rushikesh@shakkti.ai" className="flex items-center gap-6 text-muted-foreground hover:text-primary transition-all group">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <Mail size={24} />
                   </div>
-                  <span>hello@shakkti.ai</span>
+                  <span className="font-medium">hello@shakkti.ai</span>
                 </a>
                 
-                <a href="#" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Linkedin size={20} />
+                <a href="#" className="flex items-center gap-6 text-muted-foreground hover:text-primary transition-all group">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <Linkedin size={24} />
                   </div>
-                  <span>linkedin.com/in/rushikesh-dhobe</span>
+                  <span className="font-medium">linkedin.com/in/rushikesh-dhobe</span>
                 </a>
                 
-                <a href="#" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Github size={20} />
+                <a href="#" className="flex items-center gap-6 text-muted-foreground hover:text-primary transition-all group">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                    <Github size={24} />
                   </div>
-                  <span>github.com/rushikesh</span>
+                  <span className="font-medium">github.com/rushikesh</span>
                 </a>
-              </div>
-              
-              <div className="p-6 bg-secondary/30 rounded-2xl border border-white/5">
-                <p className="text-sm text-muted-foreground">
-                  "The best way to predict the future is to invent it."
-                </p>
               </div>
             </div>
 
             {/* Form */}
-            <div className="glass p-8 rounded-2xl">
+            <div className="glass-card p-10 rounded-3xl shadow-sm">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -92,9 +86,9 @@ export function Contact() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Name</FormLabel>
+                        <FormLabel className="text-foreground font-semibold">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your name" {...field} className="bg-background/50 border-white/10 focus-visible:ring-primary" />
+                          <Input placeholder="Your name" {...field} className="h-12 bg-muted/30 border-muted focus-visible:ring-primary rounded-xl" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -105,9 +99,9 @@ export function Contact() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel className="text-foreground font-semibold">Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="your@email.com" {...field} className="bg-background/50 border-white/10 focus-visible:ring-primary" />
+                          <Input placeholder="your@email.com" {...field} className="h-12 bg-muted/30 border-muted focus-visible:ring-primary rounded-xl" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -118,11 +112,11 @@ export function Contact() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel className="text-foreground font-semibold">Message</FormLabel>
                         <FormControl>
                           <Textarea 
                             placeholder="Tell me about your project..." 
-                            className="min-h-[120px] bg-background/50 border-white/10 focus-visible:ring-primary"
+                            className="min-h-[150px] bg-muted/30 border-muted focus-visible:ring-primary rounded-xl"
                             {...field} 
                           />
                         </FormControl>
@@ -130,8 +124,8 @@ export function Contact() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full bg-primary text-background hover:bg-primary/90 font-bold">
-                    Send Message <Send size={16} className="ml-2" />
+                  <Button type="submit" className="w-full h-14 bg-primary text-white hover:bg-primary/90 font-bold rounded-xl text-lg shadow-lg shadow-primary/20 transition-all">
+                    Send Message <Send size={20} className="ml-2" />
                   </Button>
                 </form>
               </Form>

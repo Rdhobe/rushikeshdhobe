@@ -34,8 +34,8 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-3" : "bg-transparent py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? "bg-white/80 backdrop-blur-md border-b border-black/5 py-4" : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -43,7 +43,7 @@ export function Navbar() {
           className="text-2xl font-bold font-display tracking-tighter cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="text-white">Rushikesh</span>
+          <span className="text-foreground">Rushikesh</span>
           <span className="text-primary">.ai</span>
         </div>
 
@@ -53,14 +53,13 @@ export function Navbar() {
             <button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-all uppercase tracking-widest"
             >
               {link.name}
             </button>
           ))}
           <Button 
-            variant="outline" 
-            className="border-primary text-primary hover:bg-primary/10 ml-4 rounded-full"
+            className="bg-primary text-white hover:bg-primary/90 ml-4 rounded-full px-6 shadow-lg shadow-primary/20"
             onClick={() => scrollToSection("#contact")}
           >
             Hire Me
