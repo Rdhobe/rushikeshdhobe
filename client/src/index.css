@@ -32,33 +32,46 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+  @keyframes mesh-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
 :root {
-  /* Minimalistic Light Theme */
-  --background: 0 0% 100%; /* Pure White */
-  --foreground: 222 47% 11%;
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
 
-  --primary: 221 83% 53%; /* Classic Blue */
+  --primary: 221.2 83.2% 53.3%;
   --primary-foreground: 210 40% 98%;
 
   --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222 47% 11.2%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
 
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222 47% 11.2%;
+  --accent: 262 83% 58%; /* Purple accent for AI feel */
+  --accent-foreground: 210 40% 98%;
 
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
 
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11.2%;
+  --card-foreground: 222.2 47.4% 11.2%;
 
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
   --ring: 221.2 83.2% 53.3%;
 
-  --radius: 0.75rem;
+  --radius: 1rem;
 }
 
 body {
@@ -70,47 +83,80 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
+  background: hsl(var(--muted-foreground) / 0.1);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.2);
+  background: hsl(var(--primary) / 0.3);
 }
 
-/* Minimalist Glass Card */
+/* Advanced Glassmorphism */
 .glass-card {
-  background: hsl(var(--background));
-  border: 1px solid hsl(var(--border));
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
 .glass-card:hover {
-  border-color: hsl(var(--primary) / 0.5);
-  box-shadow: 0 20px 40px -20px hsl(var(--primary) / 0.15);
-  transform: translateY(-4px);
+  border-color: hsl(var(--primary) / 0.4);
+  box-shadow: 0 15px 45px -15px hsl(var(--primary) / 0.2);
+  transform: translateY(-8px);
 }
 
-/* Subtle Grid Background Pattern */
-.bg-grid-pattern {
-  background-size: 40px 40px;
+/* Mesh Gradient utility */
+.bg-mesh {
+  background: linear-gradient(-45deg, #f0f7ff, #fdf4ff, #fafafa, #e0e7ff);
+  background-size: 400% 400%;
+  animation: mesh-flow 15s ease infinite;
+}
+
+/* Technical Grid Overlay */
+.bg-tech-grid {
+  background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--primary) / 0.03) 1px, transparent 1px);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 100%);
+  background: linear-gradient(to right, hsl(var(--foreground)) 20%, hsl(var(--primary)) 50%, hsl(var(--accent)) 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-border:hover::after {
+  opacity: 0.15;
 }

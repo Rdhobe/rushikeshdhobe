@@ -2,118 +2,104 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
+import { useQuery } from "@tanstack/react-query";
+import { Project } from "@shared/schema";
+import { Skeleton } from "@/components/ui/skeleton";
+
 export function Projects() {
-  const projects = [
-    {
-      title: "AI Political Intelligence Platform",
-      category: "AI & Analytics",
-      image: "/assets/project-political.png",
-      tags: ["Python", "NLP", "React", "D3.js"],
-      desc: "A comprehensive dashboard for analyzing political trends using sentiment analysis and LLMs."
-    },
-    {
-      title: "POS-Led Fintech Platform",
-      category: "Fintech",
-      image: "/assets/project-fintech.png",
-      tags: ["Flutter", "Node.js", "AWS", "Stripe"],
-      desc: "Modern point-of-sale system for retail businesses with integrated payment processing and inventory."
-    },
-    {
-      title: "AI Decision Coaching App",
-      category: "Mobile App",
-      image: "/assets/project-coaching.png",
-      tags: ["Flutter", "OpenAI API", "Firebase"],
-      desc: "Personalized coaching assistant that helps users make better decisions using AI agents."
-    },
-    {
-      title: "Flutter ERP System",
-      category: "Enterprise",
-      image: "/assets/project-erp.png",
-      tags: ["Flutter Web", "Dart", "PostgreSQL"],
-      desc: "Full-scale enterprise resource planning solution for manufacturing units with real-time tracking."
-    },
-    {
-      title: "WhatsApp AI Bot & Dashboard",
-      category: "Automation",
-      image: "/assets/project-bot.png",
-      tags: ["WhatsApp API", "Python", "Flask", "React"],
-      desc: "Automated customer support bot with a comprehensive analytics dashboard for admins."
-    }
-  ];
+  const { data: projects, isLoading } = useQuery<Project[]>({
+    queryKey: ["/api/projects"],
+  });
+
+  const displayProjects = projects || [];
 
   return (
-    <section id="projects" className="py-24 bg-background/50 relative overflow-hidden">
+    <section id="projects" className="py-32 bg-background relative overflow-hidden">
       {/* Background Texture */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-tech-grid opacity-30 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+          className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
         >
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">Featured Projects</h2>
-            <p className="text-muted-foreground max-w-xl">
-              A selection of projects that demonstrate my expertise in AI, Cloud, and Product Engineering.
+          <div className="max-w-xl">
+            <h2 className="text-4xl md:text-6xl font-bold font-display mb-6 tracking-tighter text-gradient">Featured Innovation</h2>
+            <p className="text-muted-foreground/80 text-xl font-light leading-relaxed">
+              Curated architectural solutions demonstrating mastery in AI, Cloud, and Product Engineering.
             </p>
           </div>
-          <a href="#" className="text-primary hover:text-primary/80 flex items-center gap-2 font-medium">
-            View GitHub <Github size={18} />
-          </a>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col">
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10 opacity-60" />
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4 z-20">
-                    <Badge variant="secondary" className="bg-background/80 backdrop-blur-md text-xs">
-                      {project.category}
-                    </Badge>
-                  </div>
-                </div>
-                
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-6 flex-grow">
-                    {project.desc}
-                  </p>
-                  
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="text-xs px-2 py-1 rounded bg-secondary text-secondary-foreground">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <a href="#" className="flex items-center gap-2 text-sm font-medium text-white hover:text-primary transition-colors pt-4 border-t border-white/5">
-                      View Case Study <ExternalLink size={14} />
-                    </a>
-                  </div>
-                </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {isLoading ? (
+            [1, 2, 3].map((i) => (
+              <div key={i} className="glass-card rounded-[2.5rem] overflow-hidden h-[30rem] p-10">
+                <Skeleton className="h-56 w-full mb-8 rounded-[2rem]" />
+                <Skeleton className="h-8 w-3/4 mb-4" />
+                <Skeleton className="h-4 w-full mb-2" />
+                <Skeleton className="h-4 w-5/6" />
               </div>
-            </motion.div>
-          ))}
+            ))
+          ) : (
+            displayProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="group"
+              >
+                <div className="glass-card rounded-[2.5rem] overflow-hidden h-full flex flex-col border-primary/5 hover:border-primary/20 transition-all duration-700 glow-border">
+                  <div className="relative h-64 m-4 overflow-hidden rounded-[2rem]">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800";
+                      }}
+                    />
+                    <div className="absolute bottom-6 left-6 z-20">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags?.split(',').map((tag: string) => (
+                          <span key={tag} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
+                            {tag.trim()}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-10 flex-grow flex flex-col pt-4">
+                    <h3 className="text-2xl font-bold mb-4 tracking-tight group-hover:text-primary transition-colors duration-500">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground/80 leading-relaxed font-light mb-8 flex-grow line-clamp-3">
+                      {project.description}
+                    </p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <a 
+                        href={project.link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary font-bold inline-flex items-center gap-2 group/link"
+                      >
+                        Technical Details 
+                        <span className="group-hover/link:translate-x-1 transition-transform">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))
+          )}
         </div>
       </div>
     </section>

@@ -34,32 +34,38 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "bg-white/80 backdrop-blur-md border-b border-black/5 py-4" : "bg-transparent py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        isScrolled 
+          ? "bg-white/40 backdrop-blur-xl border-b border-white/20 py-4 shadow-xl shadow-primary/5" 
+          : "bg-transparent py-8"
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <div 
-          className="text-2xl font-bold font-display tracking-tighter cursor-pointer"
+          className="text-2xl font-bold font-display tracking-tighter cursor-pointer group flex items-center gap-1"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="text-foreground">Rushikesh</span>
-          <span className="text-primary">.ai</span>
+          <span className="text-foreground group-hover:text-primary transition-colors">Rushikesh</span>
+          <span className="text-primary group-hover:text-foreground transition-colors animate-pulse">.ai</span>
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => scrollToSection(link.href)}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-all uppercase tracking-widest"
-            >
-              {link.name}
-            </button>
-          ))}
+        <div className="hidden md:flex items-center gap-10">
+          <div className="flex items-center gap-8 px-6 py-2 bg-white/30 backdrop-blur-md rounded-full border border-white/40 shadow-sm">
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                onClick={() => scrollToSection(link.href)}
+                className="text-[11px] font-bold text-muted-foreground/80 hover:text-primary transition-all uppercase tracking-[0.2em] relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </button>
+            ))}
+          </div>
+          
           <Button 
-            className="bg-primary text-white hover:bg-primary/90 ml-4 rounded-full px-6 shadow-lg shadow-primary/20"
+            className="bg-primary text-white hover:bg-primary/90 font-bold rounded-2xl px-8 shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95"
             onClick={() => scrollToSection("#contact")}
           >
             Hire Me
@@ -68,10 +74,10 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary transition-all active:scale-90"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
@@ -79,25 +85,26 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-white/10 overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden absolute top-full left-0 right-0 glass-card mx-4 mt-2 rounded-3xl border-white/40 overflow-hidden shadow-2xl"
           >
-            <div className="flex flex-col p-6 gap-4">
+            <div className="flex flex-col p-8 gap-6 text-center">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-left text-lg font-medium text-white hover:text-primary py-2 border-b border-white/5"
+                  className="text-lg font-bold text-foreground hover:text-primary transition-colors uppercase tracking-widest"
                 >
                   {link.name}
                 </button>
               ))}
-              <div className="flex gap-4 mt-4">
-                <a href="#" className="text-muted-foreground hover:text-primary"><Github size={20} /></a>
-                <a href="#" className="text-muted-foreground hover:text-primary"><Linkedin size={20} /></a>
-                <a href="#" className="text-muted-foreground hover:text-primary"><Mail size={20} /></a>
+              <div className="h-px bg-primary/10 w-full mx-auto" />
+              <div className="flex justify-center gap-8 py-2 text-muted-foreground">
+                <a href="#" className="hover:text-primary transition-colors"><Github size={24} /></a>
+                <a href="#" className="hover:text-primary transition-colors"><Linkedin size={24} /></a>
+                <a href="#" className="hover:text-primary transition-colors"><Mail size={24} /></a>
               </div>
             </div>
           </motion.div>
