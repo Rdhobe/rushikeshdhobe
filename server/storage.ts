@@ -3,13 +3,27 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 import { eq } from "drizzle-orm";
 
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
 const { Pool } = pg;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Read CA certificate if it exists
+let ca: string | undefined;
+const caPath = path.resolve(__dirname, "..", "ca.pem");
+if (fs.existsSync(caPath)) {
+  ca = fs.readFileSync(caPath, "utf8");
+}
 
 export const pool = new Pool({
   connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: ca
+    ? { rejectUnauthorized: true, ca }
+    : { rejectUnauthorized: false },
 });
 
 export const db = drizzle(pool);
