@@ -1,9 +1,18 @@
 import { users, messages, projects, siteInfo, type User, type InsertUser, type Message, type InsertMessage, type Project, type InsertProject, type SiteInfo, type InsertSiteInfo } from "../shared/schema.js";
-import { drizzle } from "drizzle-orm/vercel-postgres";
-import { sql } from "@vercel/postgres";
+import { drizzle } from "drizzle-orm/node-postgres";
+import pg from "pg";
 import { eq } from "drizzle-orm";
 
-export const db = drizzle(sql);
+const { Pool } = pg;
+
+export const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+export const db = drizzle(pool);
 
 export interface IStorage {
   // Users
