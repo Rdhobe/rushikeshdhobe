@@ -61,9 +61,29 @@ app.use((req, res, next) => {
 
 import { setupAuth } from "./auth.js";
 
-// Setup Auth and Routes
-setupAuth(app);
-await registerRoutes(httpServer, app);
+// Initialize setup
+const setupPromise = (async () => {
+  try {
+    setupAuth(app);
+    await registerRoutes(httpServer, app);
+    log("Server initialization complete.");
+  } catch (err) {
+    console.error("Failed to initialize server:", err);
+    // On Vercel, we can't process.exit(1) as it's a serverless function, 
+    // but the error will be caught by the middleware below.
+    throw err;
+  }
+})();
+
+// Wait for setup before handling requests
+app.use(async (_req, _res, next) => {
+  try {
+    await setupPromise;
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
@@ -78,12 +98,12 @@ app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
   return res.status(status).json({ message });
 });
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production" && !process.env.VERCEL) {
   serveStatic(app);
-} else {
+} else if (process.env.NODE_ENV !== "production") {
   (async () => {
     const { setupVite } = await import("./vite.js");
-    await setupVite(httpServer, app);
+    setupVite(httpServer, app);
   })();
 }
 
