@@ -1,4 +1,4 @@
-import { users, messages, projects, siteInfo, type User, type InsertUser, type Message, type InsertMessage, type Project, type InsertProject, type SiteInfo, type InsertSiteInfo } from "../shared/schema";
+import { users, messages, projects, siteInfo, type User, type InsertUser, type Message, type InsertMessage, type Project, type InsertProject, type SiteInfo, type InsertSiteInfo } from "../shared/schema.js";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { sql } from "@vercel/postgres";
 import { eq } from "drizzle-orm";

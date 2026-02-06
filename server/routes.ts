@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertMessageSchema, insertProjectSchema, insertSiteInfoSchema } from "../shared/schema";
+import { storage } from "./storage.js";
+import { insertMessageSchema, insertProjectSchema, insertSiteInfoSchema } from "../shared/schema.js";
 import { ZodError } from "zod";
 
 function isAuthenticated(req: any, res: any, next: any) {
